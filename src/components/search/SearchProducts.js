@@ -3,16 +3,19 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Products from '../products/Products';
 
 import * as firebaseService from '../../services/firebase';
-import * as FIREBASE_KEYS from '../../constants/firebase-keys';
+import * as storageService from '../../services/storage';
 
-const Home = () => {
-  const [products, setProducts] = useState([]);
+import * as FIREBASE_KEYS from '../../constants/firebase-keys';
+import * as STORAGE_KEYS from '../../constants/storage-keys';
+
+const SearchProducts = () => {
+  const [products, setProducts] = useState();
 
   const productsRef = useRef(firebaseService.getRef(FIREBASE_KEYS.PRODUCTS));
   const tempRef = productsRef.current;
 
-  const loadProducts = useCallback(() => {
-    firebaseService.getDataRealtime({ ref: productsRef, callback: onDataLoaded });
+  const loadProducts = useCallback(keywords => {
+    firebaseService.getDataRealtimeQuery({ ref: productsRef, query: FIREBASE_KEYS.NAME, criteria: keywords, callback: onDataLoaded });
   }, [productsRef]);
 
   const onDataLoaded = val => {
@@ -24,7 +27,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    loadProducts();
+    const keywords = storageService.get(STORAGE_KEYS.KEYWORD);
+    if (keywords) {
+      loadProducts(keywords);
+    }
   }, [loadProducts]);
 
   useEffect(() => {
@@ -34,19 +40,11 @@ const Home = () => {
     };
   }, [tempRef]);
 
-  if (!products || !products.length) {
-    return (
-      <div className="info__container">
-        <span>There is no products, please add products to sell</span>
-      </div>
-    );
-  }
-
   return (
-    <>
+    <div>
       <Products products={products} />
-    </>
-  )
+    </div>
+  );
 };
 
-export default Home;
+export default SearchProducts;

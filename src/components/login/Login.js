@@ -55,6 +55,7 @@ const Login = (props) => {
         uiService.alert(`Your user's name or password is not correct`);
       }
     } catch (error) {
+      console.log(error);
       uiService.hideLoading();
     }
   };

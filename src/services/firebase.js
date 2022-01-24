@@ -1,4 +1,8 @@
-import { auth, realTimeDb } from "../firebase";
+import {
+  auth,
+  realTimeDb,
+  storage
+} from "../firebase";
 
 export const insert = async ({ key, id, payload }) => {
   await realTimeDb.ref(`${key}/${id}`).set(payload);
@@ -17,4 +21,27 @@ export const getData = async ({ key, query, criteria }) => {
     return val[keys[0]];
   }
   return null;
+};
+
+export const upload = async ({ key, id, payload, entity, callback }) => {
+  const uploadTask = storage.ref(`${key}/${id}`).putString(payload, "data_url");
+  uploadTask.on("state_changed", null, (error) => { }, () => {
+    storage.ref(key).child(id).getDownloadURL().then((url) => {
+      callback(entity, url);
+    });
+  });
+};
+
+export const getRef = child => realTimeDb.ref().child(child);
+
+export const getDataRealtime = ({ ref, callback }) => {
+  ref.current.on("value", function (snapshot) {
+    callback(snapshot.val());
+  });
+};
+
+export const getDataRealtimeQuery = ({ ref, query, criteria, callback }) => {
+  ref.current.orderByChild(query).equalTo(criteria).on("value", function (snapshot) {
+    callback(snapshot.val());
+  });
 };

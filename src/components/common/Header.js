@@ -2,10 +2,13 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../../context/AppContext';
 
+import withModal from '../../components/common/Modal';
+import Sell from '../../components/sell/Sell';
+
 import * as routeService from '../../services/route';
 import * as ROUTE from '../../constants/routes';
 
-const Header = () => {
+const Header = ({ toggleModal }) => {
   const {
     user,
     setUser,
@@ -14,8 +17,20 @@ const Header = () => {
 
   const history = useHistory();
 
+  const chat = () => {
+    routeService.navigate({ route: ROUTE.CHAT, push: history.push });
+  };
+
   const sell = () => {
-    routeService.navigate({ route: ROUTE.SELL, push: history.push });
+    toggleModal(true);
+  };
+
+  const wishlist = () => {
+    routeService.navigate({ route: ROUTE.WISHLIST, push: history.push });
+  };
+
+  const cart = () => {
+    routeService.navigate({ route: ROUTE.CART, push: history.push });
   };
 
   const logout = async () => {
@@ -37,7 +52,7 @@ const Header = () => {
   };
 
   if (!user) return <></>;
- 
+
   return (
     <div className="header">
       <div className="header__left">
@@ -53,13 +68,14 @@ const Header = () => {
         }
       </div>
       <div className="header__actions">
+        <span className="header__action-title" onClick={chat}><span>Chat</span></span>
         <span className="header__action-title" onClick={sell}><span>Sell</span></span>
-        <span className="header__action-title"><span>Wishlist</span></span>
-        <span className="header__action-title"><span>Cart</span></span>
+        <span className="header__action-title" onClick={wishlist}><span>Wishlist</span></span>
+        <span className="header__action-title" onClick={cart}><span>Cart</span></span>
         <span className="header__action-title" onClick={logout}><span>Logout</span></span>
       </div>
     </div>
   );
 }
 
-export default Header;
+export default withModal(Sell)(Header);
