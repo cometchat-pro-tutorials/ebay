@@ -850,11 +850,12 @@ input {
 
 .wishlist__item-right button {
   background: #ef4444;
+  border-radius: 999px;
   border: none;
   color: #fff;
   font-weight: bold;
   outline: none;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .wishlist__item-right button:hover {

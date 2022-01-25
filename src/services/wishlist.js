@@ -17,6 +17,7 @@ export const addToWishlist = product => {
   } else {
     createWishlist(product);
   }
+  uiService.alert('Added to wishlist successfully');
 };
 
 const updateWishlist = (wishlist, product) => {
