@@ -105,7 +105,7 @@ const Sell = ({ toggleModal }) => {
           <input type="text" placeholder="Product Price" ref={productPriceRef} />
           <input type="text" placeholder="Product Description" ref={productDescriptionRef} />
           <button className="sell__btn" onClick={sell}>
-            Create
+            Create Product
           </button>
         </div>
       </div>

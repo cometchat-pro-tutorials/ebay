@@ -427,13 +427,15 @@ input {
 }
 
 .search__input input {
+  border-radius: 999px;
   border: 1px solid #e2e8f0;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   width: 68%;
 }
 
 .search__input button {
   background: #3565f2;
+  border-radius: 999px;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -509,6 +511,7 @@ input {
 
 .sell__form input {
   background-color: #f3f4f6;
+  border-radius: 999px;
   border: 1px solid #e5e7eb;
   display: block;
   font-size: 0.9375rem;
@@ -519,6 +522,7 @@ input {
 
 .sell__upload {
   background-color: #f3f4f6;
+  border-radius: 999px;
   border: 1px solid #e5e7eb;
   display: block;
   font-size: 0.9375rem;
@@ -548,6 +552,7 @@ input {
 }
 
 .sell__btn {
+  
   background-color: #3565f2;
   border: 0;
   color: #fff;
@@ -556,7 +561,9 @@ input {
   font-weight: 600;
   margin: 1.25rem auto;
   outline: none;
-  padding: 0.875rem 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+
 }
 
 .sell__btn:hover {
@@ -700,6 +707,18 @@ input {
   padding: 0.5rem 1rem;
 }
 
+.detail__actions button:nth-child(1) {
+  background-color: #35589A;
+}
+
+.detail__actions button:nth-child(2) {
+  background-color: #F14A16;
+}
+
+.detail__actions button:nth-child(3) {
+  background-color: #FC9918;
+}
+
 .detail__actions button:hover {
   cursor: pointer;
   opacity: 0.8;
@@ -744,11 +763,12 @@ input {
 
 .cart__item-right button {
   background: #ef4444;
+  border-radius: 999px;
   border: none;
   color: #fff;
   font-weight: bold;
   outline: none;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .cart__item-right button:hover {
@@ -778,11 +798,12 @@ input {
 
 .cart__payment button {
   background: #3565f2;
+  border-radius: 999px;
   border: none;
   color: #fff;
   font-weight: bold;
   outline: none;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .cart__payment button:hover {
