@@ -18,7 +18,6 @@ const WishlistItem = ({ product, onItemRemove }) => {
         <div className="wishlist__item-info">
           <p>Name: {product.name}</p>
           <p>Price: {product.price}$</p>
-          <p>Quantity: {product.quantity}</p>
         </div>
       </div>
       <div className="wishlist__item-right">
