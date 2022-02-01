@@ -12,8 +12,10 @@ import Header from './components/common/Header';
 import Home from './components/home/Home';
 import Loading from './components/common/Loading';
 import Login from './components/login/Login';
+import Menu from './components/menu/Menu';
 import Payment from './components/payment/Payment';
 import PrivateRoute from './components/common/PrivateRoute';
+import ProductDetail from './components/detail/ProductDetail';
 import Search from './components/search/Search';
 import SearchProducts from './components/search/SearchProducts';
 import Wishlist from './components/wishlist/Wishlist';
@@ -26,14 +28,16 @@ function App() {
       <Router>
         <Header />
         <Search />
+        <Menu />
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/search" component={SearchProducts} />
-          <PrivateRoute exact path="/wishlist" component={Wishlist} />
-          <PrivateRoute exact path="/cart" component={Cart} />
           <PrivateRoute exact path="/payment" component={Payment} />
           <PrivateRoute exact path="/chat" component={Chat} />
           <PrivateRoute exact path="/seller" component={ChatWithSeller} />
+          <PrivateRoute exact path="/search" component={SearchProducts} />
+          <PrivateRoute exact path="/detail" component={ProductDetail} />
+          <PrivateRoute exact path="/cart" component={Cart} />
+          <PrivateRoute exact path="/wishlist" component={Wishlist} />
           <Route exact path="/login">
             <Login />
           </Route>

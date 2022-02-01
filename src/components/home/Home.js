@@ -1,11 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-import Products from '../products/Products';
+import HomeBanner from "./HomeBanner";
+import HomeSection from "./HomeSection";
+import HomeProducts from './HomeProducts';
 
+import * as categoryService from '../../services/category';
 import * as firebaseService from '../../services/firebase';
 import * as FIREBASE_KEYS from '../../constants/firebase-keys';
 
 const Home = () => {
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
   const productsRef = useRef(firebaseService.getRef(FIREBASE_KEYS.PRODUCTS));
@@ -34,19 +39,19 @@ const Home = () => {
     };
   }, [tempRef]);
 
-  if (!products || !products.length) {
-    return (
-      <div className="info__container">
-        <span>There is no products, please add products to sell</span>
-      </div>
-    );
-  }
+  useEffect(() => {
+    setBrands(() => categoryService.getBrands());
+    setCategories(() =>categoryService.getCategories());
+  }, []);
 
   return (
-    <>
-      <Products products={products} />
-    </>
-  )
+    <div className="home">
+      <HomeBanner />
+      <HomeSection title='Explore popular brands' data={brands} />
+      <HomeSection title='Explore popular categories' data={categories} />
+      <HomeProducts products={products} />
+    </div>
+  );
 };
 
 export default Home;
