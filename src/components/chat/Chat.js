@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CometChatUserListWithMessages } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
+import { CometChatConversationListWithMessages } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
 
 import { Context } from "../../context/AppContext";
 
@@ -9,7 +9,7 @@ const Chat = () => {
 
   return (
     <div className="chat__container">
-      {cometChat && <CometChatUserListWithMessages />}
+      {cometChat && <CometChatConversationListWithMessages />}
     </div>
   );
 };
